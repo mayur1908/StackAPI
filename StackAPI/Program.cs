@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,80 +22,82 @@ namespace StackAPI
             }
         }
 
-        // Stack class represents a stack implemented using a linked list
-        public class Stack
+        // Queue class represents a queue implemented using a linked list
+        public class Queue
         {
-            private Node top; // Reference to the top node of the stack
+            private Node front; // Reference to the front node of the queue
+            private Node rear; // Reference to the rear node of the queue
 
-            public Stack()
+            public Queue()
             {
-                top = null; // Initialize the stack with no nodes
+                front = null; // Initialize the queue with no nodes
+                rear = null;
             }
 
-            // Push method adds a new node with the given data to the top of the stack
-            public void Push(int data)
+            // Enqueue method adds a new node with the given data to the rear of the queue
+            public void Enqueue(int data)
             {
                 Node newNode = new Node(data); // Create a new node with the given data
 
-                if (top == null)
+                if (rear == null)
                 {
-                    // If the stack is empty, make the new node the top node
-                    top = newNode;
+                    // If the queue is empty, make the new node both the front and rear node
+                    front = newNode;
+                    rear = newNode;
                 }
                 else
                 {
-                    // If the stack is not empty, add the new node at the top and update the references
-                    newNode.Next = top; // Set the next reference of the new node to the current top node
-                    top = newNode; // Update the top reference to the new node
+                    // If the queue is not empty, add the new node at the rear and update the references
+                    rear.Next = newNode; // Set the next reference of the current rear node to the new node
+                    rear = newNode; // Update the rear reference to the new node
                 }
             }
 
-            // Pop method removes and returns the data from the top of the stack
-            public int Pop()
+            // Dequeue method removes and returns the data from the front of the queue
+            public int Dequeue()
             {
-                if (top == null)
+                if (front == null)
                 {
-                    throw new InvalidOperationException("Stack is empty"); // Throw an exception if the stack is empty
+                    throw new InvalidOperationException("Queue is empty"); // Throw an exception if the queue is empty
                 }
 
-                int data = top.Data; // Retrieve the data from the top node
-                top = top.Next; // Update the top reference to the next node
+                int data = front.Data; // Retrieve the data from the front node
 
-                return data; // Return the data from the top node
-            }
-
-            // Peek method returns the data from the top of the stack without removing it
-            public int Peek()
-            {
-                if (top == null)
+                if (front == rear)
                 {
-                    throw new InvalidOperationException("Stack is empty"); // Throw an exception if the stack is empty
+                    // If there is only one node in the queue, set both front and rear references to null
+                    front = null;
+                    rear = null;
+                }
+                else
+                {
+                    // If there are multiple nodes in the queue, update the front reference to the next node
+                    front = front.Next;
                 }
 
-                return top.Data; // Return the data from the top node
+                return data; // Return the data from the front node
             }
         }
-
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Stack stack = new Stack(); // Create a new stack object
+            Queue queue = new Queue(); // Create a new queue object
 
-            // Push the elements to the stack in the desired order: 70, 30, 56
-            stack.Push(70);
-            stack.Push(30);
-            stack.Push(56);
+            // Enqueue the elements to the queue in the desired order: 56, 30, 70
+            queue.Enqueue(56);
+            queue.Enqueue(30);
+            queue.Enqueue(70);
 
-            // Print the elements of the stack by popping them one by one
+            // Dequeue and print elements from the queue until it is empty
             while (true)
             {
                 try
                 {
-                    int data = stack.Pop(); // Pop the top element from the stack
-                    Console.WriteLine(data); // Print the popped element
+                    int data = queue.Dequeue(); // Dequeue the front element from the queue
+                    Console.WriteLine(data); // Print the dequeued element
                 }
                 catch (InvalidOperationException)
                 {
-                    break; // Exit the loop if the stack is empty
+                    break; // Exit the loop if the queue is empty
                 }
             }
         }
