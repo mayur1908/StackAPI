@@ -10,26 +10,20 @@ namespace LinkedList
     {
         public Node Head;   // Head node of the linked list
 
-        // Method to append a node at the end of the linked list
-        public void AppendNode(int data)
+        // Method to insert a node after a given node
+        public void InsertNode(Node prevNode, int data)
         {
+            if (prevNode == null)
+            {
+                Console.WriteLine("Previous node cannot be null.");
+                return;
+            }
+
             Node newNode = new Node(data);  // Create a new node with the given data
 
-            if (Head == null)
-            {
-                Head = newNode;   // If the list is empty, make the new node as the head
-            }
-            else
-            {
-                Node current = Head;
+            newNode.Next = prevNode.Next;   // Assign the next reference of the new node to the next reference of the previous node
 
-                while (current.Next != null)
-                {
-                    current = current.Next;   // Traverse to the last node
-                }
-
-                current.Next = newNode;   // Append the new node at the end
-            }
+            prevNode.Next = newNode;        // Update the next reference of the previous node to point to the new node
         }
 
         // Method to traverse and print the linked list
