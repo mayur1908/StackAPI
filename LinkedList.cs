@@ -10,20 +10,16 @@ namespace LinkedList
     {
         public Node Head;   // Head node of the linked list
 
-        // Method to insert a node after a given node
-        public void InsertNode(Node prevNode, int data)
+        // Method to delete the first node in the linked list
+        public void Pop()
         {
-            if (prevNode == null)
+            if (Head == null)
             {
-                Console.WriteLine("Previous node cannot be null.");
+                Console.WriteLine("The linked list is already empty.");
                 return;
             }
 
-            Node newNode = new Node(data);  // Create a new node with the given data
-
-            newNode.Next = prevNode.Next;   // Assign the next reference of the new node to the next reference of the previous node
-
-            prevNode.Next = newNode;        // Update the next reference of the previous node to point to the new node
+            Head = Head.Next;   // Update the head to the next node, effectively deleting the first node
         }
 
         // Method to traverse and print the linked list
