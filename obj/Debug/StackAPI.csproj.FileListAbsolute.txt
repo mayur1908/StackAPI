@@ -1,0 +1,8 @@
+D:\bridgelabz\StackAPI\StackAPI\bin\Debug\StackAPI.exe.config
+D:\bridgelabz\StackAPI\StackAPI\bin\Debug\StackAPI.exe
+D:\bridgelabz\StackAPI\StackAPI\bin\Debug\StackAPI.pdb
+D:\bridgelabz\StackAPI\StackAPI\obj\Debug\StackAPI.csproj.AssemblyReference.cache
+D:\bridgelabz\StackAPI\StackAPI\obj\Debug\StackAPI.csproj.SuggestedBindingRedirects.cache
+D:\bridgelabz\StackAPI\StackAPI\obj\Debug\StackAPI.csproj.CoreCompileInputs.cache
+D:\bridgelabz\StackAPI\StackAPI\obj\Debug\StackAPI.exe
+D:\bridgelabz\StackAPI\StackAPI\obj\Debug\StackAPI.pdb
